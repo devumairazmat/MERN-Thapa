@@ -1,15 +1,23 @@
 const express = require("express");
 const app = express();
 
+// Middleware configuration
+
+const middleware = (req, res, next) => {
+  console.log("Middleware configuration");
+  next();
+};
+
 app.get("/", (req, res) => {
   res.send("Welcome to  MERN thapa Home");
+  next();
 });
 
-app.get("/about", (req, res) => {
+app.get("/about", middleware, (req, res) => {
   res.send("Welcome to  MERN thapa About");
 });
 
-app.get("/contact", (req, res) => {
+app.get("/contact", middleware, (req, res) => {
   res.send("Welcome to  MERN thapa Contact");
 });
 
