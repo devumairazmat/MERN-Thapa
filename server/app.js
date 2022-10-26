@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 // require("dotenv").config();
 dotenv.config({ path: "./config.env" });
 require("./db/conn");
-
+require("./model/userSchema");
 // Middleware configuration
 
 const middleware = (req, res, next) => {
