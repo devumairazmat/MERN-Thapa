@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
+
 // dotenv
-require("dotenv").config();
-// Mongoose
-const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+// require("dotenv").config();
+dotenv.config({ path: "./config.env" });
+require("./db/conn");
 
 // Middleware configuration
 
@@ -31,15 +33,3 @@ app.get("/signin", (req, res) => {
 app.get("/signup", (req, res) => {
   res.send("Welcome to  MERN thapa Regestration");
 });
-
-// Connect To mongo Db
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen("3000", () => {
-      console.log("listening on http://localhost:3000");
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
