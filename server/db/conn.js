@@ -1,11 +1,12 @@
 // Mongoose
 const mongoose = require("mongoose");
+const express = require("express");
 
-// Connect To mongo Db
+const app = express();
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("Connecting to DB & App listening on port", process.env.PORT);
+    console.log("Connecting to DB & App listening on port" + process.env.PORT);
   })
   .catch((error) => {
     console.log(error);
