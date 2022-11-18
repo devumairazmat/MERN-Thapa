@@ -8,6 +8,8 @@ router.get("/", (req, res) => {
   res.json({ message: res.body });
 });
 
+// Registration
+
 router.post("/register", async (req, res) => {
   const { name, email, phone, work, password, cpassword } = req.body;
 
@@ -28,6 +30,31 @@ router.post("/register", async (req, res) => {
     res.status(201).json({ message: "User Registred successfully" });
   } catch (err) {
     console.log(err);
+  }
+});
+
+// Login
+
+router.post("/signin", async (req, res) => {
+  // console.log(req.body);
+  // res.json({ message: "Awesome" });
+
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: "Plese Fill the data!" });
+    }
+    const userLogin = await User.findOne({ email: email });
+    console.log(userLogin);
+
+    if (!userLogin) {
+      res.json({ message: "Login Not Successfull" });
+    } else {
+      res.json({ message: "User Login Successfully" });
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 
